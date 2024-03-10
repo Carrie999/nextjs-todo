@@ -11,7 +11,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button type="submit" aria-disabled={pending}>
+    <button className=" w-[80px] h-[44px] bg-[#d5e4fc] rounded-[8px]" type="submit" aria-disabled={pending}>
       Add
     </button>
   );
@@ -22,8 +22,7 @@ export function AddForm() {
 
   return (
     <form action={formAction}>
-      <label htmlFor="todo">Enter Task</label>
-      <input type="text" id="todo" name="todo" required />
+      <input className="w-[570px] h-[44px] mr-[30px] pl-[15px]" type="text" id="todo" name="todo" placeholder="Add To Do" required />
       <SubmitButton />
       <p aria-live="polite" className="sr-only" role="status">
         {state?.message}
@@ -31,3 +30,4 @@ export function AddForm() {
     </form>
   );
 }
+

@@ -1,17 +1,12 @@
 "use server";
-
+import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from "next/cache";
-import postgres from "postgres";
 import { z } from "zod";
 
-let sql = postgres(process.env.DATABASE_URL || process.env.POSTGRES_URL!, {
-  ssl: "allow",
-});
-
-// CREATE TABLE todos (
-//   id SERIAL PRIMARY KEY,
-//   text TEXT NOT NULL
-// );
+const prisma = new PrismaClient();
+function getLocalTime(nS: any) {
+  return new Date(parseInt(nS)).toLocaleString().replace(/:\d  {1,2}$/, ' ');
+}
 
 export async function createTodo(
   prevState: {
@@ -33,10 +28,25 @@ export async function createTodo(
   const data = parse.data;
 
   try {
-    await sql`
-      INSERT INTO todos (text)
-      VALUES (${data.todo})
-    `;
+    // await sql`
+    //   INSERT INTO todo (content,finished,userId)
+    //   VALUES (${data.todo},false,'cltl6823f000cklv9hqfefffx')
+    // `;
+    console.log(11, getLocalTime(new Date().getTime()), new Date().getTime())
+
+    await prisma.todo.create({
+      data: {
+        content: data.todo,
+        finished: false,
+        user: {
+          connect: {
+            id: "cltl6823f000cklv9hqfefffx"
+          }
+        }
+      },
+    });
+
+    console.log(22, getLocalTime(new Date().getTime()), new Date().getTime())
 
     revalidatePath("/");
     return { message: `Added todo ${data.todo}` };
@@ -61,10 +71,13 @@ export async function deleteTodo(
   });
 
   try {
-    await sql`
-      DELETE FROM todos
-      WHERE id = ${data.id};
-    `;
+    // await sql`
+    //   DELETE FROM todos
+    //   WHERE id = ${data.id};
+    // `;
+    await prisma.todo.delete({
+      where: { id: data.id },
+    });
 
     revalidatePath("/");
     return { message: `Deleted todo ${data.todo}` };
