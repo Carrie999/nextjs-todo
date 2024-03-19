@@ -3,8 +3,11 @@
 import { useFormState, useFormStatus } from "react-dom";
 import { createTodo } from "@/app/actions";
 
+
 const initialState = {
   message: "",
+  id: window?.localStorage.getItem('u') || null,
+  content: "",
 };
 
 function SubmitButton() {
@@ -16,6 +19,7 @@ function SubmitButton() {
     </button>
   );
 }
+
 
 export function AddForm() {
   const [state, formAction] = useFormState(createTodo, initialState);

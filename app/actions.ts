@@ -4,13 +4,12 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 const prisma = new PrismaClient();
-function getLocalTime(nS: any) {
-  return new Date(parseInt(nS)).toLocaleString().replace(/:\d  {1,2}$/, ' ');
-}
 
 export async function createTodo(
   prevState: {
     message: string;
+    id: string | null;
+    content: string,
   },
   formData: FormData,
 ) {
@@ -28,11 +27,6 @@ export async function createTodo(
   const data = parse.data;
 
   try {
-    // await sql`
-    //   INSERT INTO todo (content,finished,userId)
-    //   VALUES (${data.todo},false,'cltl6823f000cklv9hqfefffx')
-    // `;
-    console.log(11, getLocalTime(new Date().getTime()), new Date().getTime())
 
     await prisma.todo.create({
       data: {
@@ -40,18 +34,15 @@ export async function createTodo(
         finished: false,
         user: {
           connect: {
-            id: "cltl6823f000cklv9hqfefffx"
+            id: prevState?.id || 'cltxs5dxh0000nu672hpindvj'
           }
         }
       },
     });
-
-    console.log(22, getLocalTime(new Date().getTime()), new Date().getTime())
-
     revalidatePath("/");
-    return { message: `Added todo ${data.todo}` };
+    return { message: `Added todo ${data.todo}`, content: data.todo };
   } catch (e) {
-    return { message: "Failed to create todo" };
+    return { message: "Failed to create todo", content: data.todo };
   }
 }
 
@@ -71,10 +62,6 @@ export async function deleteTodo(
   });
 
   try {
-    // await sql`
-    //   DELETE FROM todos
-    //   WHERE id = ${data.id};
-    // `;
     await prisma.todo.delete({
       where: { id: data.id },
     });
@@ -83,5 +70,46 @@ export async function deleteTodo(
     return { message: `Deleted todo ${data.todo}` };
   } catch (e) {
     return { message: "Failed to delete todo" };
+  }
+}
+
+
+export async function register(
+  prevState: {
+    message: string;
+    id: string;
+  },
+  formData: FormData,
+) {
+  const schema = z.object({
+    name: z.string().min(1),
+    email: z.string().min(1),
+    password: z.string().min(1),
+  });
+  const parse = schema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
+
+
+  if (!parse.success) {
+    return { message: "Failed to create todo" };
+  }
+
+  const data = parse.data;
+
+  try {
+
+    let res = await prisma.user.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      },
+    });
+    return { message: `success`, id: res.id };
+  } catch (e) {
+    return { message: "Failed to add user", id: null };
   }
 }
