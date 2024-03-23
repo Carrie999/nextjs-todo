@@ -1,14 +1,12 @@
 "use server";
 import { PrismaClient } from '@prisma/client';
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { verifyJwt } from "@/app/lib/jwt";
 
 const prisma = new PrismaClient();
 let i = 0
 
 export async function createTodo(
-  prevState: {
+  state: {
     message: string;
     content: string;
   },
@@ -48,7 +46,7 @@ export async function createTodo(
 }
 
 export async function deleteTodo(
-  prevState: {
+  state: {
     message: string;
   },
   formData: FormData,
