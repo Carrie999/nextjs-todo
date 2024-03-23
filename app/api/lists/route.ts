@@ -2,17 +2,10 @@
 import { NextResponse } from "next/server"
 import { headers } from 'next/headers'
 import { PrismaClient } from '@prisma/client';
-import { verifyJwt } from "@/app/lib/jwt";
 const prisma = new PrismaClient();
 
-type Params = {
-    // team: string
-}
-type Request = {
-    // team: string
-}
 
-export async function GET(req: Request, res: any, context: { params: Params }) {
+export async function GET(req: any) {
     const authorization = headers().get('authorization')
 
     if (authorization) {
@@ -54,7 +47,8 @@ export async function GET(req: Request, res: any, context: { params: Params }) {
 
 
 }
-export async function POST(req: Request, context: { params: Params }) {
+
+export async function POST(req: any) {
     const { id, finished } = await req.json()
 
     const res = await prisma.todo.update({
