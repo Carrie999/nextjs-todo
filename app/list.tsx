@@ -4,10 +4,8 @@ import { DeleteForm } from "@/app/delete-form";
 import { AddForm } from "@/app/add-form";
 import { useSession } from 'next-auth/react'
 import { signJwtAccessToken } from './lib/jwt';
-import { json } from 'stream/consumers';
-// import LoginBtn from "@/app/components/login-btn";
-// import Image from 'next/image'
-// import pic from './img/done.png'
+
+const origin = window.location.origin
 
 export function List() {
   const [todos, setTodos] = useState([])
@@ -20,7 +18,7 @@ export function List() {
 
       let accessToken = signJwtAccessToken(session.token)
 
-      let userJson = await fetch('http://localhost:3000/api/user', {
+      let userJson = await fetch(`${origin}/api/user`, {
         headers: {
           authorization: `bearer ${accessToken}`,
           Accept: 'application/vnd.dpexpo.v1+json' //设置请求头
@@ -35,7 +33,7 @@ export function List() {
 
       React.uid = user.data.id
       // setId(user.data.id)
-      let result = await fetch(`http://localhost:3000/api/lists?id=${user.data.id}`, {
+      let result = await fetch(`${origin}/api/lists?id=${user.data.id}`, {
         headers: {
           authorization: `bearer ${accessToken}`,
           Accept: 'application/vnd.dpexpo.v1+json' //设置请求头
@@ -47,7 +45,7 @@ export function List() {
       let storeTodo = window.localStorage.getItem('todo')
       if (res?.todos.length && storeTodo) {
         let todos = JSON.parse(storeTodo)
-        let result = await fetch(`http://localhost:3000/api/listsmany`, {
+        let result = await fetch(`${origin}/api/listsmany`, {
           headers: {
             authorization: `bearer ${accessToken}`,
             Accept: 'application/vnd.dpexpo.v1+json' //设置请求头
@@ -76,7 +74,7 @@ export function List() {
 
 
   const updateData = async (id: string, finished: boolean) => {
-    let result = await fetch('http://localhost:3000/api/lists', {
+    let result = await fetch(`${origin}/api/lists`, {
       headers: {
         Accept: 'application/vnd.dpexpo.v1+json' //设置请求头
       },
