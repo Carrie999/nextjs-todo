@@ -15,7 +15,7 @@ export function List() {
   const getData = async () => {
     if (session && session.user) {
 
-
+      // @ts-ignore
       let accessToken = signJwtAccessToken(session.token)
 
       let userJson = await fetch(`${origin}/api/user`, {
@@ -63,7 +63,7 @@ export function List() {
       }
     } else {
       // 没有登录本地存储
-
+      // @ts-ignore
       React.uid = ''
       let storeTodo = window.localStorage.getItem('todo')
       if (storeTodo) {
@@ -102,7 +102,9 @@ export function List() {
   }, [session])
 
   const handleCheckBox = (index: number) => {
+    // @ts-ignore
     updateData(todos[index].id, !todos[index].finished)
+    // @ts-ignore
     todos[index].finished = !todos[index].finished
     setTodos([].concat(todos))
   }
@@ -116,7 +118,7 @@ export function List() {
 
       <div className="flex flex-col justify-start items-start h-100 w-[700px] ml-[auto] mr-[auto] mt-[20px] pl-[20px]">
         {
-          todos.map((todo, index) => {
+          todos.map((todo: any, index: any) => {
             return <div className={`${myDecoStyle(todo.finished)}`} key={index}>
               <input className="relative top-[-10px] w-[20px] h-[0px] cursor-pointer  mr-[14px] 
                rounded-full 
@@ -144,6 +146,7 @@ export function List() {
               <div className='absolute left-[4px] top-[24px] cursor-pointer pointer-events-none '>
                 <svg className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4229" width="18" height="18"><path d="M384.119471 821.116243c-11.918447 0-23.837918-4.527107-32.936133-13.573133L77.629032 535.332405c-18.196431-18.107403-18.196431-47.456848 0-65.557088 18.196431-18.107403 47.674812-18.10024 65.871243-0.007163l240.619196 239.436254 495.173776-492.739331c18.196431-18.107403 47.674812-18.107403 65.871243 0 18.196431 18.10024 18.196431 47.449685 0 65.557088L417.055604 807.535947C407.956366 816.589137 396.037918 821.116243 384.119471 821.116243z" fill="#ffffff" p-id="4230"></path></svg>
               </div>
+
               <p className="pl-[7px]">{todo.content}</p>
               <DeleteForm id={todo?.id} todo={todo.content} deletes={updates} />
             </div>

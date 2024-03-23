@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 export async function POST(req: any) {
     const { id, todos } = await req.json()
     console.log('todo', todos)
+    // @ts-ignore
     todos.map(item => {
         delete item.id
         item.userId = id

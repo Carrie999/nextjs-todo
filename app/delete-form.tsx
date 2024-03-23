@@ -30,12 +30,16 @@ export function DeleteForm({ id, todo, deletes }: { id: string; todo: string; de
 
   }, [state?.message])
 
+  // @ts-ignore
   const store = (formData) => {
     console.log('store')
     var objData = {};
+    // @ts-ignore
     formData.forEach((value, key) => objData[key] = value);
+    // @ts-ignore
     let todos = JSON.parse(localStorage.getItem('todo'))
     for (let i = 0; i < todos.length; i++) {
+      // @ts-ignore
       if (todos[i].id === objData.id) {
         todos.splice(i, 1)
         break
@@ -46,6 +50,7 @@ export function DeleteForm({ id, todo, deletes }: { id: string; todo: string; de
   }
 
   return (
+    // @ts-ignore
     <form action={React?.uid ? formAction : store} >
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="todo" value={todo} />

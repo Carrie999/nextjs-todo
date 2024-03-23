@@ -22,16 +22,21 @@ function SubmitButton() {
 
 
 export function AddForm({ updates }: { updates: any }) {
+  // @ts-ignore
   const [state, formAction] = useFormState(createTodo, initialState);
 
   const ref = createRef<HTMLFormElement>();
-  const store = (formData) => {
+  const store = (formData: any) => {
     console.log('store')
     var objData = {};
-    formData.forEach((value, key) => objData[key] = value);
+    // @ts-ignore
+    formData.forEach((value: any, key: any) => objData[key] = value);
+    // @ts-ignore
     if (objData?.todo) {
+      // @ts-ignore
       let item = { content: objData.todo, id: uuidv4(), finished: false }
       if (localStorage.getItem('todo')) {
+        // @ts-ignore
         let todos = JSON.parse(localStorage.getItem('todo'))
         todos.push(item)
         localStorage.setItem('todo', JSON.stringify(todos))
@@ -53,6 +58,7 @@ export function AddForm({ updates }: { updates: any }) {
 
 
   return (
+    // @ts-ignore
     <form ref={ref} action={React?.uid ? formAction : store}>
       <input className="absolute opacity-0 z-[-1] w-[570px] h-[44px] mr-[30px] pl-[15px]" type="text" id="id" name='id' value={React?.uid} />
       <input className="w-[570px] h-[44px] mr-[30px] pl-[15px]" type="text" id="todo" name="todo" placeholder="Add To Do" required />
