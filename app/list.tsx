@@ -4,10 +4,13 @@ import { DeleteForm } from "@/app/delete-form";
 import { AddForm } from "@/app/add-form";
 import { useSession } from 'next-auth/react'
 import { signJwtAccessToken } from './lib/jwt';
-
-const origin = window.location.origin
+let origin = ''
 
 export function List() {
+  useEffect(() => {
+    origin = window.location.origin
+  })
+
   const [todos, setTodos] = useState([])
   // const [id, setId] = useState('')
   const { data: session } = useSession()
@@ -42,7 +45,7 @@ export function List() {
       })
       let res = await result.json()
 
-      let storeTodo = window.localStorage.getItem('todo')
+      let storeTodo = localStorage.getItem('todo')
       if (res?.todos.length && storeTodo) {
         let todos = JSON.parse(storeTodo)
         let result = await fetch(`${origin}/api/listsmany`, {
@@ -65,7 +68,7 @@ export function List() {
       // 没有登录本地存储
       // @ts-ignore
       React.uid = ''
-      let storeTodo = window.localStorage.getItem('todo')
+      let storeTodo = localStorage.getItem('todo')
       if (storeTodo) {
         setTodos(JSON.parse(storeTodo))
       }

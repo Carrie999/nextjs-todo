@@ -1,5 +1,5 @@
-// @ts-ignore
-// import type { NextAuthOptions } from "next-auth"
+
+import type { NextAuthOptions } from "next-auth"
 import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from 'next-auth/providers/github'
 // const AUTH_TIMEOUT = 60000;
@@ -7,7 +7,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-export const authOptions: any = {
+export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     // jwt: {
     //     secret,
@@ -48,8 +48,6 @@ export const authOptions: any = {
         //     // if (new URL(url).origin === baseUrl) return url;
         //     return baseUrl;
         // },
-
-        // @ts-ignore
         async session({ session, user, token }) {
             return { ...user, ...session, token: { ...token } }
         },
@@ -61,7 +59,6 @@ export const authOptions: any = {
         //     // }
         //     return session;
         // },
-        // @ts-ignore
         async jwt({ token, user, account, profile }) {
             return { ...token, ...user, ...account }
         },
