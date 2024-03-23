@@ -6,10 +6,7 @@ const prisma = new PrismaClient();
 let i = 0
 
 export async function createTodo(
-  state: {
-    message: string;
-    content: string;
-  },
+  state: any,
   formData: FormData,
 ) {
   const schema = z.object({
@@ -46,9 +43,7 @@ export async function createTodo(
 }
 
 export async function deleteTodo(
-  state: {
-    message: string;
-  },
+  state: any,
   formData: FormData,
 ) {
   const schema = z.object({
