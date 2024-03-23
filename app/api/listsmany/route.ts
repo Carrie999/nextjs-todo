@@ -1,19 +1,11 @@
 
 import { NextResponse } from "next/server"
-import { headers } from 'next/headers'
 import { PrismaClient } from '@prisma/client';
-import { verifyJwt } from "@/app/lib/jwt";
 const prisma = new PrismaClient();
 
-type Params = {
-    // team: string
-}
-type Request = {
-    // team: string
-}
 
 // 批量创建todo
-export async function POST(req: Request, context: { params: Params }) {
+export async function POST(req: any) {
     const { id, todos } = await req.json()
     console.log('todo', todos)
     todos.map(item => {
