@@ -63,7 +63,6 @@ export function AddForm({ updates }: { updates: any }) {
       <input className="absolute opacity-0 z-[-1] w-[570px] h-[44px] mr-[30px] pl-[15px]" type="text" id="id" name='id' value={React?.uid} />
       <input className="w-[570px] h-[44px] mr-[30px] pl-[15px]" type="text" id="todo" name="todo" placeholder="Add To Do" required />
       <SubmitButton />
-      // @ts-ignore
       <p aria-live="polite" className="sr-only" role="status">
         {state?.message}
       </p>
