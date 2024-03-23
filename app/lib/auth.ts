@@ -7,7 +7,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: any = {
     adapter: PrismaAdapter(prisma),
     // jwt: {
     //     secret,
@@ -49,6 +49,7 @@ export const authOptions: NextAuthOptions = {
         //     return baseUrl;
         // },
 
+        // @ts-ignore
         async session({ session, user, token }) {
             return { ...user, ...session, token: { ...token } }
         },
@@ -60,10 +61,8 @@ export const authOptions: NextAuthOptions = {
         //     // }
         //     return session;
         // },
-        async jwt({
-            token, user, account,
-            profile
-        }) {
+        // @ts-ignore
+        async jwt({ token, user, account, profile }) {
             return { ...token, ...user, ...account }
         },
     },
