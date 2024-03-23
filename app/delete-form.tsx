@@ -2,6 +2,7 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 import { deleteTodo } from "@/app/actions";
+import React, { useEffect } from 'react';
 
 const initialState = {
   message: "",
@@ -19,11 +20,33 @@ function DeleteButton() {
   );
 }
 
-export function DeleteForm({ id, todo }: { id: string; todo: string }) {
+export function DeleteForm({ id, todo, deletes }: { id: string; todo: string; deletes: any }) {
   const [state, formAction] = useFormState(deleteTodo, initialState);
 
+  useEffect(() => {
+    if (state?.message === 'success') {
+      deletes()
+    }
+
+  }, [state?.message])
+
+  const store = (formData) => {
+    console.log('store')
+    var objData = {};
+    formData.forEach((value, key) => objData[key] = value);
+    let todos = JSON.parse(localStorage.getItem('todo'))
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].id === objData.id) {
+        todos.splice(i, 1)
+        break
+      }
+    }
+    localStorage.setItem('todo', JSON.stringify(todos))
+    deletes()
+  }
+
   return (
-    <form action={formAction} >
+    <form action={React?.uid ? formAction : store} >
       <input type="hidden" name="id" value={id} />
       <input type="hidden" name="todo" value={todo} />
       <DeleteButton />

@@ -11,6 +11,9 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "done-pattern": "url('/done.png')",
+        "bg1": "url('/P1.jpg')",
+        "bg2": "url('/P2.jpg')",
       },
     },
   },
