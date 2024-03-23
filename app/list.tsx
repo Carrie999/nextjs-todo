@@ -30,7 +30,7 @@ export function List() {
 
 
 
-
+      // @ts-ignore
       React.uid = user.data.id
       // setId(user.data.id)
       let result = await fetch(`${origin}/api/lists?id=${user.data.id}`, {

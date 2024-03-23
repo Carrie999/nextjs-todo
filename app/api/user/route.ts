@@ -10,6 +10,7 @@ export async function GET() {
     if (authorization) {
         let token = verifyJwt(authorization.slice(7,))
         let user = await prisma.user.findMany({
+            // @ts-ignore
             where: { name: token.name, email: token.email },
         });
 
