@@ -22,7 +22,6 @@ export function List() {
     origin = window.location.origin
   })
   const [todos, setTodos] = useState([])
-  const [template, setTemplate] = useState('default')
   const { data: session } = useSession()
   const { user, isLoading, isError } = useUser()
 
