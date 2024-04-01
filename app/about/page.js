@@ -1,6 +1,10 @@
 
 import { Background } from './background'
 
+export const metadata = {
+  title: "To Do Lists - About",
+  description: "To Do Lists online Minimalist wind, Multiple Theme Styles",
+};
 
 export default async function About() {
 

@@ -6,8 +6,8 @@ import { Providers } from "./components/providers";
 import { NextUI } from "./components/nextUIProvider";
 
 export const metadata = {
-  title: "Next.js Forms Example",
-  description: "Example application with forms and Postgres.",
+  title: "To Do Lists - online ",
+  description: "To Do Lists online Minimalist wind ｜ Multiple Theme Styles ｜ 在线todolists ｜极简 todo ｜主题样式定制",
 };
 
 export default function RootLayout({
