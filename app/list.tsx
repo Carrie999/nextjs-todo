@@ -3,15 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { DeleteForm } from "@/app/delete-form";
 import { AddForm } from "@/app/add-form";
 import { useSession } from 'next-auth/react'
-
 import { signJwtAccessToken } from './lib/jwt';
-
-import {
-  // AnimatePresence,
-  // LayoutGroup,
-  motion,
-  // useAnimate,
-} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 let origin = ''
 
