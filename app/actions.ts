@@ -23,7 +23,6 @@ export async function createTodo(
   }
 
   const data = parse.data;
-  // let a = Date.now()
   try {
     await prisma.todo.create({
       data: {
@@ -36,7 +35,6 @@ export async function createTodo(
         }
       },
     });
-    // console.log(1222, Date.now() - a)
     // revalidatePath("/");
     return { message: `success`, content: data.todo, update: i++ };
   } catch (e) {
