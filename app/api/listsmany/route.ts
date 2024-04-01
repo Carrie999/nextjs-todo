@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 // 批量创建todo
 export async function POST(req: any) {
     const { id, todos } = await req.json()
-    console.log('todo', todos)
+    // console.log('todo', todos)
     // @ts-ignore
     todos.map(item => {
         delete item.id

@@ -23,8 +23,9 @@ export async function createTodo(
   }
 
   const data = parse.data;
+  // let a = Date.now()
   try {
-    const res = await prisma.todo.create({
+    await prisma.todo.create({
       data: {
         content: data.todo,
         finished: false,
@@ -35,6 +36,7 @@ export async function createTodo(
         }
       },
     });
+    // console.log(1222, Date.now() - a)
     // revalidatePath("/");
     return { message: `success`, content: data.todo, update: i++ };
   } catch (e) {
@@ -56,10 +58,12 @@ export async function deleteTodo(
   });
 
   try {
+    // let a = Date.now()
+    // console.log(111, Date.now())
     await prisma.todo.delete({
       where: { id: data.id },
     });
-
+    // console.log(2222, Date.now() - a)
     // revalidatePath("/");
     return { message: `success` };
   } catch (e) {

@@ -16,7 +16,7 @@ export async function GET(req: any) {
 
         if (req?.url.includes('?')) {
             const id = req?.url.split('?')[1].split('=')[1]
-            console.log('id', id)
+            // console.log('id', id)
             const todos = await prisma.todo.findMany({
                 where: { userId: id },
                 orderBy: {
