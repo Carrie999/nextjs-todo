@@ -9,6 +9,7 @@ const DEFAULT_SIGN_OPTION: SignOption = {
 }
 
 const NEXTAUTH_SECRET = '2bf0fa1d7db9ecd60b2c436978513d3c1c5536a8'
+
 export function signJwtAccessToken(payload: JwtPayload, options: SignOption = DEFAULT_SIGN_OPTION) {
     const secretKey = process.env.NEXTAUTH_SECRET
     if (!payload) return ''

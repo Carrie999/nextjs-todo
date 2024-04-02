@@ -45,6 +45,11 @@ export const Appbar = () => {
                 </div>
             </Link>
             <Theme></Theme>
+            <Link href="/history">
+                <div className="pl-[30px] relative top-[2px] cursor-pointer text-headerText">
+                    History
+                </div>
+            </Link>
             <Link href="/about">
                 <div className="pl-[30px] relative top-[2px] cursor-pointer text-headerText">
                     About

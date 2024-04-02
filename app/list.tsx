@@ -5,7 +5,7 @@ import { AddForm } from "@/app/add-form";
 import { useSession } from 'next-auth/react'
 import { signJwtAccessToken } from './lib/jwt';
 import { motion } from 'framer-motion';
-
+import { Spinner } from "@nextui-org/react";
 let origin = ''
 
 import { useUser } from './lib/swr'
@@ -19,21 +19,22 @@ export function List() {
   const { user, isLoading, isError } = useUser()
 
   const getData = async () => {
-    // session && session.user
     if (session && session.user) {
       // @ts-ignore
       let accessToken = signJwtAccessToken(session.token)
 
-      // let userJson = await fetch(`${origin}/api/user`, {
-      //   headers: {
-      //     authorization: `bearer ${accessToken}`,
-      //     Accept: 'application/vnd.dpexpo.v1+json' //设置请求头
-      //   },
-      //   method: 'get',
-      // })
-      // let user = await userJson.json()
+      let userJson = await fetch(`${origin}/api/user`, {
+        headers: {
+          authorization: `bearer ${accessToken}`,
+          Accept: 'application/vnd.dpexpo.v1+json' //设置请求头
+        },
+        method: 'get',
+      })
+      let user = await userJson.json()
       // @ts-ignore
       React.uid = user.data.id
+      localStorage.setItem('id', user.data.id)
+      localStorage.setItem('t', accessToken)
       // setId(user.data.id)
       let result = await fetch(`${origin}/api/lists?id=${user.data.id}`, {
         headers: {
@@ -119,10 +120,6 @@ export function List() {
     }
   }
 
-  if (isLoading) {
-    return <div className="flex flex-row justify-center w-[700px]  ml-[auto] mr-[auto] text-todoSecondary">...</div>
-  }
-
   if (isError) {
     return <div className="flex flex-row  justify-start w-[700px]  ml-[auto] mr-[auto] text-todoSecondary">It seems that there is an issue with your network connection.</div>
   }
@@ -134,7 +131,7 @@ export function List() {
         <AddForm updates={updates} />
       </div>
 
-      <div className="flex flex-col justify-start items-start h-100 w-[700px] ml-[auto] mr-[auto] mt-[20px] pl-[20px] h-[500px] overflow-y-auto">
+      {!isLoading ? <div className="flex flex-col justify-start items-start h-100 w-[700px] ml-[auto] mr-[auto] mt-[20px] pl-[20px] h-[500px] overflow-y-auto">
         {
           todos.map((todo: any, index: any) => {
             return <div className={`${myDecoStyle(todo.finished)}`} key={index}>
@@ -178,16 +175,21 @@ export function List() {
                       duration: 0.4,
                     },
                   }}
-                  //
+
                   className={`absolute top-[30px] left-[4px] bg-todoSecondary h-[2px]`}
                 ></motion.div>}
               </p>
-
               <DeleteForm id={todo?.id} todo={todo.content} deletes={updates} />
             </div>
           })
         }
       </div>
+        :
+        <div className="flex flex-row justify-center w-[700px]  mt-[150px]  ml-[auto] mr-[auto] text-todoSecondary">
+          <Spinner color="default" labelColor="foreground" />
+        </div>
+      }
+
     </>
   );
 }

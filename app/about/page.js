@@ -13,7 +13,7 @@ export default async function About() {
       <Background></Background>
       <main className="flex flex-col bg-layout items-center pt-[100px] ">
         <p className="relative z-[10] text-center text-[40px] bold text-title">站长有话说</p>
-        <div className="relative bg-content mt-[50px] mb-[200px] pt-[50px] pb-[50px] w-[1000px] min-h-[600px]" >
+        <div className="relative bg-content mt-[50px] mb-[200px] pt-[50px] pb-[50px] w-[1000px] h-[670px] overflow-y-scroll" >
           {/* <p className="pl-[40px] pr-[40px] text-black text-[20px]" dangerouslySetInnerHTML={{ __html: desc }} ></p> */}
           <p className="pl-[40px] pr-[40px] text-black text-[20px]">
             问：这个世界上有很多 todolist 网站，你的网站有很什么特别的地方吗？
@@ -35,10 +35,18 @@ export default async function About() {
             问: 数据请求好慢啊？用户登录有问题？
             <br />
             <p className="opacity-50 text-[18px] mt-[8px]"> 答：站主为了解决请求速度问题也是操碎了心，我会努力解决这个问题的，有任何其他问题也可以找我。
+              <br />
+              你也可以联系我qq：771685809
+            </p>
+
+
+            <br />
+            问: 站长会不会偷窥你的数据？
+            <br />
+            <p className="opacity-50 text-[18px] mt-[8px]"> 答：我闲的没事干，监视你们干了什么。你做的才重要，别人知道不知道有什么打紧的，想要别人不知道就不要写。
             </p>
 
             <br />
-
             <p className="opacity-50 text-[18px]">
               这里做了主题样式，希望你喜欢，后面有兴趣会补充更多主题，本站主也会关注最新流行的样式是什么，争取跟上设计潮流。
 
@@ -46,13 +54,7 @@ export default async function About() {
               如果看不懂我说的也没关系，就是最潮流的。日后前端有什么新框架发展，立马用上。功能不多，但是技术永远使用最新的。最后祝您少说多做。
             </p>
             <br />
-            <p className="opacity-50 text-[18px]">
 
-            </p>
-            <br />
-            <p className="opacity-50 text-[18px]">
-              你也可以联系我qq：771685809
-            </p>
 
 
 
