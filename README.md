@@ -16,7 +16,13 @@ This example shows how you can build forms with Next.js and Server Actions and s
 ```bash
 npm install
 ```
+
 ### develpment
+
+copy .env.example ->  .env   
+
+confige environment variables
+
 ```bash
 npm run dev
 ```
