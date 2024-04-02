@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server"
 import { headers } from 'next/headers'
 import { PrismaClient } from '@prisma/client';
+import { verifyJwt } from "@/app/lib/jwt";
 import parseUrl from "parse-url";
 
 const prisma = new PrismaClient();
@@ -14,9 +15,13 @@ const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 月份从 
 const day = String(currentDate.getDate()).padStart(2, '0');
 
 export async function GET(req: any) {
-
     const authorization = headers().get('authorization')
+
     if (authorization) {
+        let token = verifyJwt(authorization.slice(7,))
+        if (!token) {
+            return NextResponse.json({ message: 'authorization error', todos: [] }, { status: 200 })
+        }
         // let token = verifyJwt(authorization.slice(7,))
         // let user = await prisma.user.findMany({
         //     where: { name: token.name, email: token.email },

@@ -11,8 +11,6 @@ module.exports = {
   ],
   theme: {
     spacing: {
-      // '24': '20rem',
-      // '144': '36rem',
       px: '1px',
       0: '0',
       0.5: '0.125rem',
