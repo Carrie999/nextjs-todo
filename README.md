@@ -1,9 +1,8 @@
-# Forms with Next.js and Server Actions
+# ToDoList Project
 
 This example shows how you can build forms with Next.js and Server Actions and shows how to use next-auth and prisma.
 
 ## How to use
-
 
 ```bash
 npm install
