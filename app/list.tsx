@@ -131,7 +131,7 @@ export function List() {
         <AddForm updates={updates} />
       </div>
 
-      {!isLoading ? <div className="flex flex-col justify-start items-start h-100 w-[700px] ml-[auto] mr-[auto] mt-[20px] pl-[20px] h-[500px] overflow-y-auto">
+      {!isLoading ? <div className="flex flex-col justify-start items-start h-100 w-[700px] ml-[auto] mr-[auto] mt-[20px] pl-[20px] h-[460px] overflow-y-auto">
         {
           todos.map((todo: any, index: any) => {
             return <div className={`${myDecoStyle(todo.finished)}`} key={index}>

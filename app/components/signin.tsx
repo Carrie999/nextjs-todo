@@ -7,7 +7,6 @@ export const SigninButton = () => {
     const { data: session } = useSession()
     if (session && session.user) {
         return <div className='flex items-center justify-center gap-4  mr-[200px] ml-auto'>
-
             {/* <img className='w-[28px] h-[28px] rounded-full' src={session.user.image!} /> */}
 
             <Dropdown>

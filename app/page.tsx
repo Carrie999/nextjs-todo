@@ -68,7 +68,7 @@ export default function Home() {
       {haveImage && <div className={myDecoStyle()} ></div>}
       <main className="flex flex-col items-center pt-[0px] bg-layout min-h-screen overflow-y-auto" >
         <p className="relative z-[1] left-[-30px] text-center text-[40px] pt-[100px] bold text-title">&nbsp; TO DO LISTS</p>
-        <div className='relative bg-content mb-[200px] pt-[50px] pb-[50px] w-[1000px] min-h-[600px] mt-[30px]' >
+        <div className='relative bg-content mb-[200px] pt-[50px] pb-[50px] w-[1000px] h-[620px] mt-[30px]' >
           <List />
         </div>
 

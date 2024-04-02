@@ -13,7 +13,7 @@ export default async function About() {
       <Background></Background>
       <main className="flex flex-col bg-layout items-center pt-[100px] ">
         <p className="relative z-[10] text-center text-[40px] bold text-title">站长有话说</p>
-        <div className="relative bg-content mt-[50px] mb-[200px] pt-[50px] pb-[50px] w-[1000px] h-[670px] overflow-y-scroll" >
+        <div className="relative bg-content mt-[50px] mb-[200px] pt-[30px]  w-[1000px] h-[600px] overflow-y-scroll" >
           {/* <p className="pl-[40px] pr-[40px] text-black text-[20px]" dangerouslySetInnerHTML={{ __html: desc }} ></p> */}
           <p className="pl-[40px] pr-[40px] text-black text-[20px]">
             问：这个世界上有很多 todolist 网站，你的网站有很什么特别的地方吗？
