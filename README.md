@@ -2,6 +2,16 @@
 
 This example shows how you can build forms with Next.js and Server Actions and shows how to use next-auth and prisma.
 
+## Technology Stack
+- nextjs app SSR
+- tailwind
+- next-auth
+- prisma
+- postgres
+- react useFormState 
+- Server Actions 
+
+
 ## How to use
 ```bash
 npm install
