@@ -39,6 +39,9 @@ export const Background = () => {
         if (theme === 'theme4') {
             setHaveImage(true)
         }
+        if (theme === 'theme5') {
+            setHaveImage(false)
+        }
     }, [theme])
 
 

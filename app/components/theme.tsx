@@ -23,6 +23,7 @@ export const Theme = () => {
                     {/* <DropdownItem key="theme2" >Sea salt bluen</DropdownItem> */}
                     <DropdownItem key="theme3" >black</DropdownItem>
                     <DropdownItem key="theme4" >dispersion</DropdownItem>
+                    <DropdownItem key="theme5" >cartoon</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
         </div>

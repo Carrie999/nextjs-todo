@@ -43,6 +43,9 @@ export default function Home() {
     if (theme === 'theme4') {
       setHaveImage(true)
     }
+    if (theme === 'theme5') {
+      setHaveImage(false)
+    }
   }, [theme])
 
   const myDecoStyle = () => {
@@ -58,6 +61,9 @@ export default function Home() {
     }
     if (theme === 'theme4') {
       bg = 'bg-bg3'
+    }
+    if (theme === 'theme5') {
+      bg = ''
     }
 
     return 'w-[100%] h-[100%] absolute z-[0] bg-cover ' + bg;

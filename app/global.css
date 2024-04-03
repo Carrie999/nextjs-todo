@@ -83,3 +83,16 @@ html[data-theme="theme4"] {
   --color-primaryText: #ffffff;
   --color-title: #000002;
 }
+
+html[data-theme="theme5"] {
+  --color-todoPrimary: #5ba99f;
+  --color-black: #5caa9e;
+  --color-todoSecondary: #f0978b;
+  --color-todoSecondary2: #f0978b;
+  --color-header: #90c6bb;
+  --color-headerText: #f4fafa;
+  --color-layout: #fefaf1;
+  --color-content: #fefaf1;
+  --color-primaryText: #ffffff;
+  --color-title: #5ba99f;
+}
