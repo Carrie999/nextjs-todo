@@ -71,6 +71,15 @@ export async function GET(req: any) {
                 }
             }
             );
+            console.log('date', date)
+            todos.push({
+                "id": "cluuxwrxw0000vcifu00eisjf",
+                "content": "date",
+                //@ts-ignore
+                "createdAt": date,
+                "finished": false,
+                "userId": "clu3xryq0000012icjjwfdvcb"
+            })
             return NextResponse.json({ message: 'success', todos: todos }, { status: 200 })
         } else {
             // const todos = await prisma.todo.findMany();
