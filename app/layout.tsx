@@ -21,6 +21,7 @@ export default function RootLayout({
       <Head>
         <title>todolist</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta httpEquiv="Cache-Control" content="no-store" />
       </Head>
       <body>
 

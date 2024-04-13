@@ -99,7 +99,7 @@ export default function About() {
                     <div className=' w-[100px] h-[20px] cursor-pointer [&_*]:py-0 border-none overflow-y-hidden' >
                       <DefaultMonthlyEventItem
                         onClick={() => {
-                          // console.log(111)
+                          // cons≠ole.log(111)
                         }}
                         key={index}
                         title={item.title.slice(0, 5)}

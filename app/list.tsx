@@ -35,8 +35,15 @@ export function List() {
       React.uid = user.data.id
       localStorage.setItem('id', user.data.id)
       localStorage.setItem('t', accessToken)
+
+      const currentDate = new Date();
+
+      // 获取年、月、日
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 月份从 0 开始，需要加 1
+      const day = String(currentDate.getDate()).padStart(2, '0');
       // setId(user.data.id)
-      let result = await fetch(`${origin}/api/lists?id=${user.data.id}`, {
+      let result = await fetch(`${origin}/api/lists?id=${user.data.id}&date=${year}-${month}-${day}`, {
         headers: {
           authorization: `bearer ${accessToken}`,
           Accept: 'application/vnd.dpexpo.v1+json' //设置请求头

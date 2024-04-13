@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import { PrismaClient } from '@prisma/client';
 import { verifyJwt } from "@/app/lib/jwt";
 import parseUrl from "parse-url";
+// import { revalidatePath } from 'next/cache'
 
 const prisma = new PrismaClient();
 
@@ -27,7 +28,6 @@ export async function GET(req: any) {
         //     where: { name: token.name, email: token.email },
         // });
         if (req?.url.includes('?')) {
-
             let url = parseUrl(req.url)
             let id = url.query.id
             let date = new Date(`${year}-${month}-${day}`)
@@ -71,7 +71,7 @@ export async function GET(req: any) {
                 }
             }
             );
-
+            // revalidatePath("/api/lists");
             return NextResponse.json({ message: 'success', todos: todos }, { status: 200 })
         } else {
             // const todos = await prisma.todo.findMany();
