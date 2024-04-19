@@ -25,12 +25,19 @@ export default function RootLayout({
       </Head>
       <body>
 
+        <div className='absolute bottom-[0px] text-[#000000] opacity-10 w-[100vw] p-4 z-[10]'>
+          <div className="text-center text-xs">
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=13063402000259">冀公网安备13063402000259号</a>&nbsp;
+            <a target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index">冀ICP备2024063617号</a>
+          </div>
+        </div>
         <Providers>
           <NextUI>
             <Appbar />
             {children}
           </NextUI>
         </Providers>
+
       </body>
     </html>
   );
