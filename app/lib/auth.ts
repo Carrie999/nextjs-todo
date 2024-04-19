@@ -14,13 +14,13 @@ export const authOptions: NextAuthOptions = {
     //     // maxAge:11111,
     // },
     providers: [
-        // GoogleProvider({
-        //     clientId: process.env.GOOGLE_CLIENT_ID!,
-        //     clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        //     httpOptions: {
-        //         timeout: 5000,
-        //     }
-        // }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            httpOptions: {
+                timeout: 5000,
+            }
+        }),
         GitHubProvider({
             clientId: process.env.GITHUB_ID!,
             clientSecret: process.env.GITHUB_SECRET!,
