@@ -37,7 +37,7 @@ export const Appbar = () => {
         <header className='absolute top-[0px] bg-header w-[100vw] flex p-4 z-[10]'>
             <Link href="/">
                 <div >
-                    {window.location.hostname === "todos.asia" ? <div className="pl-[200px] relative top-[2px] cursor-pointer text-headerText text-[20px]">
+                    {typeof window !== 'undefined' && window?.location.hostname === "todos.asia" ? <div className="pl-[200px] relative top-[2px] cursor-pointer text-headerText text-[20px]">
                         待办事项
                     </div> : <Image
                         src={dark ? logoBlack : logo}
