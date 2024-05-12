@@ -37,13 +37,16 @@ export const Appbar = () => {
         <header className='absolute top-[0px] bg-header w-[100vw] flex p-4 z-[10]'>
             <Link href="/">
                 <div >
-                    {typeof window !== 'undefined' && window?.location.hostname === "todos.asia" ? <div className="pl-[200px] relative top-[2px] cursor-pointer text-headerText text-[20px]">
-                        待办事项
-                    </div> : <Image
-                        src={dark ? logoBlack : logo}
-                        className='cursor-pointer absolute z-[1] top-[-4px] left-[160px] w-[140px]'
-                        alt="Picture of the author"
-                    />}
+                    {typeof window !== 'undefined' && window?.location.hostname === "todos.asia" ?
+                        <div className="cursor-pointer absolute z-[1] top-[16px] left-[160px] w-[140px] text-headerText text-[20px]">
+                            待办事项
+                        </div>
+                        : <Image
+                            src={dark ? logoBlack : logo}
+                            className='cursor-pointer absolute z-[1] top-[-4px] left-[160px] w-[140px]'
+                            alt="Picture of the author"
+                        />}
+
                 </div>
             </Link>
             <Theme></Theme>
