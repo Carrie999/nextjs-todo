@@ -30,7 +30,7 @@ export const SigninButton = () => {
         </div>
     }
     return (
-        <div className='flex gap-4 ml-auto'>
+        <div className='flex gap-4 ml-auto mr-[400px]'>
             <button className='text-headerText ml-auto ' onClick={() => {
                 signIn('', { redirectTo: '/' });
             }}> Sign In</button>
